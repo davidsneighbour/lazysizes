@@ -46,7 +46,7 @@
 					options: {
 						jshintrc: true
 					},
-					src: [ "lazysizes.js", "plugins/**/*.js", "!*.min.js", "!plugins/**/*.min.js" ] //, "Gruntfile.js", "tests/*.js"
+					src: ["lazysizes.js", "plugins/**/*.js", "!*.min.js", "!plugins/**/*.min.js"] //, "Gruntfile.js", "tests/*.js"
 				}
 			},
 			qunit: {
@@ -54,13 +54,13 @@
 			},
 			watch: {
 				gruntfile: {
-					files: [ "Gruntfile.js", "lazysizes.js" ],
-					tasks: [ "default" ]
+					files: ["Gruntfile.js", "lazysizes.js"],
+					tasks: ["default"]
 				}
 			},
 			bytesize: {
 				all: {
-					src: [ "lazysizes.min.js" ]
+					src: ["lazysizes.min.js"]
 				}
 			},
 			uncss: {
@@ -92,7 +92,7 @@
 		grunt.loadNpmTasks('grunt-max-filesize');
 		grunt.loadNpmTasks('grunt-contrib-qunit');
 
-		grunt.registerTask('wrapcore', 'wraps lazysizes into umd and common wrapper.', function() {
+		grunt.registerTask('wrapcore', 'wraps lazysizes into umd and common wrapper.', function () {
 			var ls = grunt.file.read('src/lazysizes-core.js');
 			var common = grunt.file.read('src/common.wrapper');
 			var umd = grunt.file.read('src/umd.wrapper');
@@ -101,9 +101,9 @@
 			grunt.file.write('lazysizes-umd.js', umd.replace('{{ls}}', ls));
 		});
 
-		grunt.registerTask('importTs', 'import global typescript.', function() {
+		grunt.registerTask('importTs', 'import global typescript.', function () {
 			const fileName = './lazysizes.d.ts';
-			const importStr =  `import './types/global';\n\n`;
+			const importStr = `import './types/global';\n\n`;
 			const tsContent = grunt.file.read(fileName);
 
 			grunt.file.write(fileName, importStr + tsContent);
@@ -111,7 +111,8 @@
 
 
 		// Default task.
-		grunt.registerTask("default", [ "wrapcore", "test", "uglify", "bytesize", "maxFilesize" ]);
-		grunt.registerTask("test", [ "jshint" ]);
+		//grunt.registerTask("default", [ "wrapcore", "test", "uglify", "bytesize", "maxFilesize" ]);
+		grunt.registerTask("default", ["wrapcore", "test", "bytesize", "maxFilesize"]);
+		grunt.registerTask("test", ["jshint"]);
 	};
 })();
